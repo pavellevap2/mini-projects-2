@@ -1,0 +1,22 @@
+{
+  "name": "mini_projects_2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pavellevap2/mini-projects-2.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pavellevap2/mini-projects-2/issues"
+  },
+  "homepage": "https://github.com/pavellevap2/mini-projects-2#readme",
+  "dependencies": {
+    "ramda": "^0.25.0"
+  }
+}

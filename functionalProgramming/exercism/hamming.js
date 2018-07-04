@@ -6,7 +6,7 @@ const makeHamming = (firstStrand, secondStrand) => {
   firstStrand = firstStrand.split("");
 
   firstStrand.forEach((x, i) => {
-    if (x.charCodeAt() === secondStrand.charCodeAt(i)) {
+    if (x.charCodeAt() !== secondStrand.charCodeAt(i)) {
       differnce += 1;
     }
   });

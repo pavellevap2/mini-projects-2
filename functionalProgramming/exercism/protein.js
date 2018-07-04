@@ -22,7 +22,7 @@ const RNA_EXAMPLE = "AUGUUUUCUUAAAUG";
 
 const proteinTranslitions = codon => {
   codon = codon.match(/.{1,3}/g);
-  return codon.map((x, i) => ` ${PROTEINS[x]}`).join(",");
+  return codon.map(x => PROTEINS[x]).join(",");
 };
 
 console.log(proteinTranslitions(RNA_EXAMPLE));

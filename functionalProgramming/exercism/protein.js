@@ -26,3 +26,5 @@ const proteinTranslitions = codon => {
 };
 
 console.log(proteinTranslitions(RNA_EXAMPLE));
+
+const test = x => x => x;

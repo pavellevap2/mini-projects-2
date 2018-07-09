@@ -2,16 +2,15 @@ const FIRST_STRAND = "GAGCCTACTAACGGGAT";
 const SECOND_STRAND = "CATCGTAATGACGGCCT";
 
 const makeHamming = (firstStrand, secondStrand) => {
-  let differnce = 0;
   firstStrand = firstStrand.split("");
 
-  firstStrand.forEach((x, i) => {
+  return firstStrand.reduce((acc, x, i) => {
     if (x.charCodeAt() !== secondStrand.charCodeAt(i)) {
-      differnce += 1;
+      acc += 1;
     }
-  });
 
-  return differnce;
+    return acc;
+  }, 0);
 };
 
 console.log(makeHamming(FIRST_STRAND, SECOND_STRAND));

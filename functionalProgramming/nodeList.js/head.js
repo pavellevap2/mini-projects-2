@@ -9,8 +9,6 @@ const linked_list = {
   }
 };
 
-const makeNode = (value, next) => ({ value, next });
-
 const head = (newNode, list) => {
   if (list) {
     return { value: list.value, next: head(newNode, list.next) };

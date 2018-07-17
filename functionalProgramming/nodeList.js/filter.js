@@ -12,12 +12,16 @@ const linked_list = {
 const filter = (filterFn, list) => {
   const { value, next } = list;
 
-  if (filterFn(value) && next) {
-    return { value, next: filter(filterFn, list.next) };
-  } else if (!filterFn(value) && next) {
-    filter(filterFn, next);
+  if (next) {
+    if (filterFn(value)) {
+      return { value, next: filter(filterFn, next) };
+    } else {
+      return filter(filterFn, next);
+    }
   } else {
-    return { value, next: null };
+    if (filterFn(value)) {
+      return { value, next: null };
+    } else return null;
   }
 };
 

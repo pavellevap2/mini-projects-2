@@ -25,3 +25,23 @@ const convertToRoman = (number, acc = "") => {
 
   return nearestDischarge;
 };
+
+const once = fn => {
+  let done = false;
+  console.log("donce", done);
+
+  return function() {
+    return done ? void 0 : ((done = true), fn.apply(this, arguments));
+  };
+};
+
+const askedOnBlindDate = once(() => "sure, why not?");
+
+askedOnBlindDate();
+//=> 'sure, why not?'
+
+askedOnBlindDate();
+//=> undefined
+
+askedOnBlindDate();
+//=> undefined

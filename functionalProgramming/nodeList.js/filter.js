@@ -1,27 +1,27 @@
 const linked_list = {
-  value: -1,
+  value: 1433,
   next: {
-    value: 15,
+    value: -1,
     next: {
-      value: 18,
-      next: null
+      value: 15,
+      next: {
+        value: -18,
+        next: null
+      }
     }
   }
 };
 
 const filter = (filterFn, list) => {
-  const { value, next } = list;
-
-  if (next) {
+  if (list) {
+    const { value, next } = list;
     if (filterFn(value)) {
       return { value, next: filter(filterFn, next) };
     } else {
       return filter(filterFn, next);
     }
   } else {
-    if (filterFn(value)) {
-      return { value, next: null };
-    } else return null;
+    return null;
   }
 };
 

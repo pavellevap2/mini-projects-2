@@ -16,13 +16,12 @@ const linked_list = {
 };
 
 const reduce = (reduceFn, list, acc) => {
-  const { value, next } = list;
-
-  if (next) {
-    return reduce(reduceFn, next, reduceFn(acc, value));
+  if (list) {
+    return reduce(reduceFn, list.next, reduceFn(acc, list.value));
   } else {
-    return reduceFn(acc, value);
+    return acc;
   }
 };
 
 console.log(reduce((acc, x) => acc + x, linked_list, 0));
+console.log(reduce((acc, x) => acc.concat([x, x]), linked_list, []));

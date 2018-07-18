@@ -10,11 +10,12 @@ const linked_list = {
 };
 
 const map = (mapFn, list) => {
-  const { value, next } = list;
-
-  if (next) {
+  if (list) {
+    const { value, next } = list;
     return { value: mapFn(value), next: map(mapFn, next) };
   } else {
-    return { value: mapFn(value), next: null };
+    return null;
   }
 };
+
+console.log(map(x => x + "!", linked_list));

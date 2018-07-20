@@ -9,7 +9,7 @@ function afn2(next) {
 }
 
 function afn3(next) {
-  setTimeout(() => next("a3"), rand(0, 1000));
+  setTimeout(() => next("a3dsa"), rand(0, 1000));
 }
 
 const done = fns => {
@@ -23,11 +23,14 @@ const parallel = (fns, resultFn) => {
 
   fns.forEach(fn => {
     fn(res => {
-      resultArr.push(res);
+      if (resultArr.length < afns.length - 1) {
+        resultArr.push(res);
+      } else {
+        resultArr.push(res);
+        return resultFn(resultArr);
+      }
     });
   });
-
-  return resultFn(resultArr);
 };
 
 parallel(afns, done);

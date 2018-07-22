@@ -13,7 +13,7 @@ function afn3(next) {
 }
 
 const done = fns => {
-  console.log(...fns);
+  console.log(fns);
 };
 
 const afns = [afn1, afn2, afn3];
@@ -23,7 +23,7 @@ const parallel = (fns, resultFn) => {
 
   fns.forEach(fn => {
     fn(res => {
-      if (resultArr.length < afns.length - 1) {
+      if (resultArr.length < fns.length - 1) {
         resultArr.push(res);
       } else {
         resultArr.push(res);

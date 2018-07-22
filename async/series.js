@@ -4,6 +4,10 @@ function afn1(next) {
   setTimeout(() => next("a1", 0), rand(0, 1000));
 }
 
+function afn2(next) {
+  setTimeout(() => next("a2", 0), rand(0, 1000));
+}
+
 function afn3(next) {
   setTimeout(() => next("done", 0), rand(0, 1000));
 }
@@ -13,17 +17,14 @@ const done = fns => {
 };
 
 const series = (fns, resultFn) => {
-  let resultArr = [];
-
-  function go() {
-    if (!fns.length) {
+  function go(resultArr = [], index = 0) {
+    if (fns.length === index) {
       return resultFn(resultArr);
     } else {
-      const firstFn = fns.shift();
+      const nextFn = fns[index];
 
-      firstFn(res => {
-        resultArr.push(res);
-        go();
+      nextFn(res => {
+        go([...resultArr, res], index + 1);
       });
     }
   }

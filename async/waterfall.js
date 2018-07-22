@@ -1,15 +1,15 @@
 const rand = (min, max) => Math.floor(Math.random() * (max - min) + min);
 
-export default function afn1(next) {
-  setTimeout(() => next("a1", 0), rand(0, 1000));
+function afn1(next) {
+  setTimeout(() => next("a1", null), rand(0, 1000));
 }
 
 function afn2(next) {
-  setTimeout(() => next("a2", 0), rand(0, 1000));
+  setTimeout(() => next("a2", null), rand(0, 1000));
 }
 
 function afn3(next) {
-  setTimeout(() => next("done", 0), rand(0, 1000));
+  setTimeout(() => next("done", null), rand(0, 1000));
 }
 
 const done = fns => {
@@ -17,21 +17,14 @@ const done = fns => {
 };
 
 const waterfall = (fns, resultFn) => {
-  let resultArr = [];
-
-  function go() {
-    if (!fns.length) {
-      return resultFn(resultArr.slice(-1));
+  function go(prevResult, index = 0) {
+    if (fns.length === index) {
+      return resultFn(prevResult);
     } else {
-      const currentFn = fns.shift();
+      const currentFn = fns[index];
 
-      currentFn(data => {
-        resultArr.push(data);
-
-        if (resultArr.length > 1) {
-          data = resultArr[resultArr.length - 2];
-        }
-        go();
+      currentFn(prevResult, data => {
+        //
       });
     }
   }

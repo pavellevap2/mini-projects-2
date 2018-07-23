@@ -1,9 +1,9 @@
 const parallel = (fns, resultFn) => {
   let resultArr = [];
 
-  fns.forEach(fn => {
-    fn((data, err) => {
-      try {
+  try {
+    fns.forEach(fn => {
+      fn((data, err) => {
         if (err) {
           throw err;
         } else {
@@ -14,11 +14,11 @@ const parallel = (fns, resultFn) => {
             resultFn(resultArr);
           }
         }
-      } catch (error) {
-        resultFn(error);
-      }
+      });
     });
-  });
+  } catch (error) {
+    resultFn(error);
+  }
 };
 
 const rand = (min, max) => Math.floor(Math.random() * (max - min) + min);
@@ -43,5 +43,5 @@ function afnWithError(next) {
   setTimeout(() => next("data", "error"), rand(0, 1000));
 }
 
-parallel([afn1, afn2, afn3], done); //log in random order
+// parallel([afn1, afn2, afn3], done); //log in random order
 parallel([afn1, afnWithError, afn3], done); //error

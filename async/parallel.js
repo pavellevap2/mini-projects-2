@@ -1,23 +1,20 @@
 const parallel = (fns, resultFn) => {
   let resultArr = [];
 
-  try {
-    fns.forEach(fn => {
-      fn((data, err) => {
-        if (err) {
-          throw err;
+  for (fn of fns) {
+    fn((data, err) => {
+      if (err) {
+        resultFn(err);
+      } else {
+        console.log(data);
+        if (resultArr.length < fns.length - 1) {
+          resultArr.push(data);
         } else {
-          if (resultArr.length < fns.length - 1) {
-            resultArr.push(data);
-          } else {
-            resultArr.push(data);
-            resultFn(resultArr);
-          }
+          resultArr.push(data);
+          resultFn(resultArr);
         }
-      });
+      }
     });
-  } catch (error) {
-    resultFn(error);
   }
 };
 
